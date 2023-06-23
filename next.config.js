@@ -2,12 +2,20 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-	async redirects(){
+	async rewrites() {
 		return [
 			{
-				source: '/',
-				destination: '/app',
-				permanent: false
+				source: '/:slug*',
+				destination: '/app/:slug*',
+			}
+		]
+	},
+	async redirects() {
+		return [
+			{
+				source: '/app/:slug*',
+				destination: '/:slug*',
+				permanent: true
 			}
 		]
 	},
